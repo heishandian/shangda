@@ -1,0 +1,34 @@
+	private EditText countyName;//所属地区    修改areaID 3
+	private EditText stationID;//站点ID    sewageID
+	private EditText controlId;//控制系统ID controlID
+	private EditText shortTitle;//简介         short_title   
+	private EditText name;//名称                      name
+	private EditText address;//地址         address
+	private EditText OpNum;//运营编号      operationum
+	private EditText coordinateX;//纬度  coordinateY
+	private EditText coordinateY;//经度   coordinateX
+	private EditText detection1dl;//T下限 detection1DL
+	private EditText detection1ul;//T上限 detection1UL
+	private EditText detection2dl;//PH下限 detection2DL
+	private EditText detection2ul;//PH上限 detection2UL
+	private EditText detection3dl;//ORP下限detection3DL
+	private EditText detection3ul;//ORP上限 detection3UL
+	private EditText detection5dl;//DO下限 detection5DL
+	private EditText detection5ul;//DO上限 detection5UL 
+    private EditText reduceNH3N;//削减NH3-N reduceNH3N
+    private EditText reduceCOD;//削减COD量reduceCOD
+	private EditText detection4dl;//风机运行时间runtimeperiod1
+	private EditText detection4ul;//风机停止时间	stoptimeperiod1 
+	private EditText detection6dl;//混合回流泵运行时间runtimeperiod2
+	private EditText detection6ul;//混合回流泵停止时间stoptimeperiod2
+	private EditText gratingDays;//污泥回流泵运行时间runtimeperiod3
+	private EditText waterflow;//污泥回流泵停止时间时间stoptimeperiod3
+	private EditText DCF11;//电磁阀1运行时间runtimeperiod4
+	private EditText DCF12;//电磁阀1停止时间stoptimeperiod4
+	private EditText DCF21;//电磁阀2运行时间runtimeperiod5 
+	private EditText DCF22;//电磁阀2停止时间stoptimeperiod5
+	private EditText DCF31;//电磁阀3运行时间runtimeperiod6
+	private EditText DCF32;//电磁阀3停止时间stoptimeperiod6
+
+
+   

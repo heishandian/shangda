@@ -1,0 +1,22 @@
+液位计：
+
+		switch (intstate) {
+		case 1:
+			return "高高";
+		case 2:
+			return "高";
+		case 4:
+			return "低";
+		default:
+			return "低低";
+		}
+		
+设备
+switch (intstate) {
+		case 1:
+			return "运行";
+		case 2:
+			return "停止";
+		default:
+			return "故障";
+		}

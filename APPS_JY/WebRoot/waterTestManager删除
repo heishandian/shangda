@@ -1,0 +1,3 @@
+DELETE FROM waterTestManager WHERE outnh3n
+删除物联网展会的水质化验出入记录
+DELETE FROM waterTestManager WHERE sewageid=29 AND outnh3n=1 AND testingtime='2016-10-25 00:00:00.000'

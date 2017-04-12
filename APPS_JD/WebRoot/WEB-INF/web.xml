@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<!-- <servlet> <description>This is the description of my J2EE component</description> 
+		<display-name>This is the display name of my J2EE component</display-name> 
+		<servlet-name>JsonServlet</servlet-name> <servlet-class>com.czq.servlet.JsonServlet</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>JsonServlet</servlet-name> <url-pattern>/servlet/JsonServlet</url-pattern> 
+		</servlet-mapping> -->
+
+	<servlet>
+		<servlet-name>SewageServlet</servlet-name>
+		<servlet-class>com.czq.servlet.SewageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SewageServlet</servlet-name>
+		<url-pattern>/servlet/SewageServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.czq.servlet.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/servlet/LoginServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AreaServlet</servlet-name>
+		<servlet-class>com.czq.servlet.AreaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AreaServlet</servlet-name>
+		<url-pattern>/servlet/AreaServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>StationServlet</servlet-name>
+		<servlet-class>com.czq.servlet.StationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StationServlet</servlet-name>
+		<url-pattern>/servlet/StationServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DetectionServlet</servlet-name>
+		<servlet-class>com.czq.servlet.DetectionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DetectionServlet</servlet-name>
+		<url-pattern>/servlet/DetectionServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EquipmentStateServlet</servlet-name>
+		<servlet-class>com.czq.servlet.EquipmentStateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EquipmentStateServlet</servlet-name>
+		<url-pattern>/servlet/EquipmentStateServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>StationMonitorServlet</servlet-name>
+		<servlet-class>com.czq.servlet.StationMonitorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StationMonitorServlet</servlet-name>
+		<url-pattern>/servlet/StationMonitorServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EquipmentsRemoteControl</servlet-name>
+		<servlet-class>com.czq.servlet.EquipmentsRemoteControl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EquipmentsRemoteControl</servlet-name>
+		<url-pattern>/servlet/EquipmentsRemoteControl</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AreaConfig</servlet-name>
+		<servlet-class>com.czq.servlet.AreaConfigServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AreaConfig</servlet-name>
+		<url-pattern>/servlet/AreaConfig</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdministratorConfig</servlet-name>
+		<servlet-class>com.czq.servlet.AdminConfigServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdministratorConfig</servlet-name>
+		<url-pattern>/servlet/AdministratorConfig</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SewageConfig</servlet-name>
+		<servlet-class>com.czq.servlet.SewageConfigServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SewageConfig</servlet-name>
+		<url-pattern>/servlet/SewageConfig</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AlertQuery</servlet-name>
+		<servlet-class>com.czq.servlet.AlertQueryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AlertQuery</servlet-name>
+		<url-pattern>/servlet/AlertQuery</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ChartDrawing</servlet-name>
+		<servlet-class>com.czq.servlet.ChartServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChartDrawing</servlet-name>
+		<url-pattern>/servlet/ChartDrawing</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GetStatistic</servlet-name>
+		<servlet-class>com.czq.servlet.StatisticServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetStatistic</servlet-name>
+		<url-pattern>/servlet/GetStatistic</url-pattern>
+	</servlet-mapping>
+	<!-- 20140718 <servlet> <servlet-name>GetMap</servlet-name> <servlet-class>com.czq.servlet.MapTestServlet</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>GetMap</servlet-name> <url-pattern>/servlet/GetMap</url-pattern> 
+		</servlet-mapping> -->
+
+	<!-- 20140830 -->
+	<servlet>
+		<servlet-name>GetWaterFlowInfo</servlet-name>
+		<servlet-class>com.czq.servlet.WaterFlowChartServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetWaterFlowInfo</servlet-name>
+		<url-pattern>/servlet/GetWaterFlowInfo</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MapmsgServlet</servlet-name>
+		<servlet-class>com.czq.servlet.MapmsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MapmsgServlet</servlet-name>
+		<url-pattern>/servlet/MapmsgServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>PadingUtilServlet</servlet-name>
+		<servlet-class>com.czq.servlet.PadingUtilServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PadingUtilServlet</servlet-name>
+		<url-pattern>/servlet/PadingUtilServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MapSewageSearchServlet</servlet-name>
+		<servlet-class>com.czq.servlet.MapSewageSearchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MapSewageSearchServlet</servlet-name>
+		<url-pattern>/servlet/MapSewageSearchServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MapServlet</servlet-name>
+		<servlet-class>com.czq.servlet.MapServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MapServlet</servlet-name>
+		<url-pattern>/servlet/MapServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EquipmenthandlingServlet</servlet-name>
+		<servlet-class>com.czq.servlet.EquipmenthandlingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EquipmenthandlingServlet</servlet-name>
+		<url-pattern>/servlet/EquipmenthandlingServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DevicedocServlet</servlet-name>
+		<servlet-class>com.czq.servlet.DevicedocServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DevicedocServlet</servlet-name>
+		<url-pattern>/servlet/DevicedocServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MaintenanceServlet</servlet-name>
+		<servlet-class>com.czq.servlet.MaintenanceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MaintenanceServlet</servlet-name>
+		<url-pattern>/servlet/MaintenanceServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MessageServlet</servlet-name>
+		<servlet-class>com.czq.servlet.MessageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MessageServlet</servlet-name>
+		<url-pattern>/servlet/MessageServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SysUserServlet</servlet-name>
+		<servlet-class>com.czq.servlet.SysUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SysUserServlet</servlet-name>
+		<url-pattern>/servlet/SysUserServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>StationServlet_Android</servlet-name>
+		<servlet-class>com.czq.servlet.StationServlet_Android</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StationServlet_Android</servlet-name>
+		<url-pattern>/servlet/StationServlet_Android</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AreaServlet_Android</servlet-name>
+		<servlet-class>com.czq.servlet.AreaServlet_Android</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AreaServlet_Android</servlet-name>
+		<url-pattern>/servlet/AreaServlet_Android</url-pattern>
+	</servlet-mapping>
+
+
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

@@ -1,0 +1,324 @@
+无锡客户端需要显示的参数
+一 地图
+覆盖物：http://58.215.202.186:8082/APPS/servlet/MapServlet?county=all
+    传入参数：county	:区域名(返回指定区域的覆盖物，county=all查询所有区域的覆盖物)
+弹框：http://58.215.202.186:8082/APPS/servlet/MapmsgServlet?stationName=薛家湾&& operationnum=
+弹框显示的内容：（共16项）
+站点名 short_title
+运营编号 operationnum
+曝气机equipment1state
+污水泵equipment2state
+回流泵equipment3state
+排水泵equipment4state
+T  detection1
+PH detection2
+ORP detection3
+液位计1 detection4
+DO detection5
+瞬时流量instant_flow
+日处理水量day_water
+日消减COD量reduceCOD
+日消减NH3-N量reduceNH3N
+日消减总P量reduceP
+
+
+二 站点查询
+（1）	水质监测记录（4个参数）[特别注意，这个地方如果今天没有数据的话，将会显示之前最新的300条数据]
+http://58.215.202.186:8082/APPS/servlet/PadingUtilServlet?stationName=荸荠岸&&pagingnum=1&&items=25&&time=2016-04-26  [有数据]
+返回：result1
+检测时间	testingtime
+温度T		detection1
+PH 			detection2
+ORP		    detection3
+液位		detection4
+DO 			detection5
+result2：
+pagingnum		页码
+items			条数
+pagecount		总页数
+itemscount		总条数
+
+
+（2）	设备运行记录（4个设备）
+http://58.215.202.186:8082/APPS/servlet/EquipmentStateServlet?stationName=荸荠岸&&pagingnum=1&&items=25&&time=2016-04-01 [有数据]
+返回result1：
+监测时间	testingtime
+曝气机		equipment1state
+污水泵		equipment2state
+回流泵		equipment3state
+排水泵		equipment4state
+result2：
+pagingnum		页码
+items		    条数
+pagecount		总页数
+itemscount	    总条数
+
+（3）	检查数据统计图（4个参数）
+http://58.215.202.186:8082/APPS/servlet/ChartDrawing?stationName=薛家湾
+上面一张表显示内容如下（不需要显示日处理水量，因为有专门的处理水量分析）
+检测时间testingtime
+温度T detection1
+PH detection2
+ORP detection3
+DO detection5
+下面做T、PH、ORP、DO四张图
+（4）处理水量分析
+处理水量分为：月处理水量、和年处理水量
+所用URL: 
+月处理水量：http://58.215.202.186:8082/APPS/servlet/GetWaterFlowInfo?stationName=薛家湾&&Flag=Month&&Year=2016&&Month=06
+   返回：  date	 日
+water	 处理水量（立方米）
+	       tonnage 吨位
+
+年处理水量：http://58.215.202.186:8082/APPS/servlet/GetWaterFlowInfo?stationName=薛家湾&&Flag=Year&&Year=2016
+返回： month 月
+water	 处理水量（立方米）
+	       tonnage 吨位
+
+
+
+三 预警查询（查询整个区域）
+设备故障报警：
+http://58.215.202.186:8082/APPS/servlet/AlertQuery
+   传入参数：
+	requestFlag= RE	请求标志
+area		        站点名
+	pagingnum		第几页
+	items			每页条数
+	time				时间
+举例：
+http://58.215.202.186:8082/APPS/servlet/AlertQuery?requestFlag=RE&pagingnum=1&items=10&time=2016-05-14&area=惠山
+返回 result1：
+	short_title	     站点名称
+	time				 检测时间
+	alertInfo			 故障设备名称
+result2：
+pagingnum		页码（当前查询的页码）
+items		    条数（当前查询也返回的条数）
+pagecount		总页数
+itemscount	    总条数
+
+设备故障报警处理
+http://61.147.198.178:8082/APPS/servlet/EquipmenthandlingServlet
+传入参数：alertTime=2016-04-20 21:44:03&&sewage_name=小纪富民&&alertInfo=6
+返回：
+There is no this station!          如果站点不存在，返回没有此站点
+	success						  处理成功
+	failed						  处理失败
+
+水质参数异常报警：
+http://58.215.202.186:8082/APPS/servlet/AlertQuery
+   传入参数：
+	requestFlag= RW	请求标志
+stationName		站点名
+	pagingnum		第几页
+	items			每页条数
+	time				时间
+举例：
+http://58.215.202.186:8082/APPS/servlet/AlertQuery?requestFlag=RW&&area=%E9%94%A1%E5%B1%B1&pagingnum=1&items=10&time=2016-05-10
+返回 result1：
+sewage_name	 站点名
+	operationnum 运营编号
+	alertTime		预警时间
+alertInfo		预警信息
+result2：
+pagingnum		页码（当前查询的页码）
+items		    条数（当前查询也返回的条数）
+pagecount		总页数
+itemscount	    总条数
+
+
+断电断线报警：（按区域查询）
+	http://58.215.202.186:8082/APPS/servlet/AlertQuery
+   传入参数：
+	requestFlag= RP	请求标志
+area				查询区域
+	pagingnum		第几页
+	items			每页条数
+	time				时间
+举例：
+http://58.215.202.186:8082/APPS/servlet/AlertQuery?requestFlag=RP&pagingnum=1&items=10&time=2016-04-20&area=惠山
+返回 result1：
+	alertTime		预警时间
+sewage_name	站点名
+alertInfo		预警信息
+state			处理状态
+admin		管理员
+result2：
+pagingnum		页码（当前查询的页码）
+items		    条数（当前查询也返回的条数）
+pagecount		总页数
+itemscount	    总条数
+
+
+
+四、用户管理
+1、登陆用户个人信息查询
+http:// 58.215.202.186:8082/APPS/servlet/SysUserServlet
+传入参数：
+requestFlag=R
+loginname 登陆名
+返回：
+		loginname   登陆名
+password		密码（按情况要不要显示，我先传过来）
+username	用户姓名
+role			用户角色
+department	所属部门
+telephone	电话
+举例：http://58.215.202.186:8082/APPS/servlet/SysUserServlet?requestFlag=R&loginname=jiangda
+
+
+2、修改基本信息
+http://58.215.202.186:8082/APPS/servlet/SysUserServlet?requestFlag=U&loginname=jiangda& username=黄凯& department=江大&telephone=123456
+
+传入参数：
+requestFlag=U
+loginname  其中登陆名是不可以修改的 
+姓名：username
+部门：department
+联系电话：telephone
+返回：
+User not exist 当登陆名错误时返回用户不存在
+update success：更新成功
+update failed：更新失败
+
+2、修改密码
+http://58.215.202.186:8082/APPS/servlet/SysUserServlet?requestFlag=F& =jiangda&password=jiangda&oldpassword=jiangda
+
+传入参数：
+requestFlag=F
+登陆名：loginname
+原始密码：oldpassword
+新密码：password
+返回：
+wrong oldpassword：原始密码错误
+update password success :更行密码成功
+update password failed：更新密码失败
+
+
+
+
+五、站点配置
+查询指定站点配置信息：
+http://58.215.202.186:8082/APPS/servlet/SewageConfig
+传入参数:requestFlag=R  stationName=宗村村
+返回：
+countyName 所属地区
+stationID 站点ID
+controlId 控制ID
+shortTitle 简称
+name  站点名
+OpNum 运营编号
+address 地址
+coordinateX 经度
+coordinateY 纬度
+detection1ul T上限
+detection1dl T下限
+detection2ul PH上限
+detection2dl PH下限
+detection3ul ORP上限
+detection3dl ORP下限
+detection5ul DO上限
+detection5dl DO下限
+reduceCOD  日消减COD值
+reduceNH3N 日消减NH3-N值
+reduceP 日消减P值
+视屏地址:videourl
+吨位：tonnage
+runtimeperiod1  风机运行时间
+stoptimeperiod1 风机停止时间
+runtimeperiod2  混合回流泵运行时间设置		"
+stoptimeperiod2 混合回流泵停止时间设置
+runtimeperiod3  污泥回流泵运行时间设置
+stoptimeperiod3 污泥回流泵停止时间设置
+DCF11 电磁阀1运行时间设置
+DCF12 电磁阀1停止时间设置
+DCF21 电磁阀2运行时间设置
+DCF22 电磁阀2停止时间设置
+DCF31 电磁阀3运行时间设置
+DCF32 电磁阀3停止时间设置
+DCF41 电磁阀4运行时间设置
+DCF42 电磁阀4停止时间设置
+更新站点信息：
+除了需要传递上面列出的所有参数外，还要传递requestFlag=U
+返回：
+（1）name==null 或 short_title==null 或 countryName==null
+则返回Unavailable key add
+（2) 如果更新失败，返回Failed
+（3）更新成功，返回Update successfully
+
+新增站点信息：
+除了需要传递上面列出的所有参数外，还要传递requestFlag= C
+新增站点返回：
+（1）name==null 或 short_title==null 或 countryName==null
+则返回Unavailable key add
+（2）	如果站点已经存在，返回Have already existed
+（3）新增站点失败，则返回Faied
+（4）新增站点成功，则返回successfully
+
+
+
+设备名称 devicenam 设备类型 devicetype  安装时间 setuptime
+六、站点管理（也就是保养单）[保养单查询中要把时间删掉,只按照区域和站点两个条件查询]
+(1) 查询保养单（查询指定站点保养单）
+ http://58.215.202.186:8082/APPS/servlet/MaintenanceServlet
+传入参数：
+requestFlag= R  	请求标志
+short_title 		站点名
+pagingnum		第几页
+items				每页条数
+time				时间
+county			按区域查
+
+举例：
+测试用：http://localhost:8080/APPS/servlet/MaintenanceServlet?requestFlag=R&county=羊尖&short_title=前头巷&pagingnum=1&items=10
+http://58.215.202.186:8082/APPS/servlet/MaintenanceServlet?requestFlag=R&county=&
+short_title=前巷西巷&pagingnum=1&items=10
+返回:result1
+short_title	所属污水站点
+	repairreason		保养原因
+	repaircontent		保养内容
+	consumematerial	消耗材料
+	repairman		维修人员
+completetime		维护时间
+
+result2：
+pagingnum		页码
+items		    条数
+pagecount		总页数
+itemscount	    总条数
+
+(2) 新建保养单
+http://58.215.202.186:8082/APPS/servlet/MaintenanceServlet
+传入参数：
+requestFlag=C
+short_title	所属污水站点
+	repairreason		保养原因
+	repaircontent		保养内容
+	consumematerial	消耗材料
+	repairman		维修人员
+completetime		维护时间
+返回：
+create success		新增成功
+create failed      新增失败
+
+七、短信查询
+http://58.215.202.186:8082/APPS/servlet/MessageServlet
+传入参数:
+telephone	电话号码15150662709
+pagingnum   页码
+items=25		每页条数
+time         时间2016-06-07
+返回:result1
+tel			发送号码
+sendtime		发送时间
+abnormaltype	故障类型(1:水质异常 2:设备故障 3:断电断线)
+messagedetail	短信内容
+result2：
+pagingnum		页码
+items		    条数
+pagecount		总页数
+itemscount	    总条数
+
+举例：http://58.215.202.186:8082/APPS/servlet/MessageServlet?telephone=15150662709&pagingnum=1&items=25&time=2016-06-07
+
