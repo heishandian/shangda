@@ -63,24 +63,6 @@ public class EquipmentStateServlet extends HttpServlet{
 		ArrayList<EquipmentState> list = new ArrayList<EquipmentState>();
 		sewageid = new Sewage().getSewageidByShort_title(short_title);
 		String sql = null;
-		/*if(!"".equals(short_title) && "".equals(start_time) && "".equals(end_time) ){
-			sql = "SELECT CONVERT(varchar(19),testingtime,120) as time,equipment6state,equipment7state,equipment8state,"+
-					"equipment9state,equipment10state,equipment11state,equipment12state,equipment13state," +
-					"equipment14state,equipment15state,equipment16state,equipment17state,equipment18state," +
-					"equipment19state,equipment20state,equipment21state,equipment22state " +
-					"FROM (SELECT ROW_NUMBER() over(order by testingtime desc) as rows,* FROM run_data "+
-					"WHERE sewageID = "+sewageid+") as temp "+
-					"WHERE rows>("+item+"*("+pagingnum+"-1)) and rows<=("+item+"*"+pagingnum+")";
-		} else if(!"".equals(short_title) && !"".equals(start_time) && !"".equals(end_time)){
-			sql = "SELECT CONVERT(varchar(19),testingtime,120) as time,equipment6state,equipment7state,equipment8state,"+
-					"equipment9state,equipment10state,equipment11state,equipment12state,equipment13state," +
-					"equipment14state,equipment15state,equipment16state,equipment17state,equipment18state," +
-					"equipment19state,equipment20state,equipment21state,equipment22state " +
-					"FROM (SELECT ROW_NUMBER() over(order by testingtime desc) as rows,* FROM run_data "+
-					"WHERE CONVERT(varchar(10),testingtime,120) >= CONVERT(varchar(10),'"+start_time+"',120) "+
-					"AND CONVERT(varchar(10),testingtime,120) <= CONVERT(varchar(10),'"+end_time+"',120) AND sewageID = "+sewageid+") as temp "+
-					"WHERE rows>("+item+"*("+pagingnum+"-1)) and rows<=("+item+"*"+pagingnum+")";
-		}*/
 		if(!"".equals(short_title) && "".equals(time)  ){
 			sql = "SELECT CONVERT(varchar(19),testingtime,120) as time,equipment6state,equipment7state,equipment8state,"+
 					"equipment9state,equipment10state,equipment11state,equipment12state,equipment13state," +
@@ -145,12 +127,6 @@ public class EquipmentStateServlet extends HttpServlet{
 	
 	private PadingUtil getCount(String short_title,Integer pagingnum, Integer items, String time){
 		String sql = null;
-		/*if(!"".equals(short_title) && "".equals(start_time) && "".equals(end_time) ){
-			sql = "SELECT COUNT(*) itemscount FROM detection_data WHERE sewageID = "+sewageid+"";
-		} else if(!"".equals(short_title) && !"".equals(start_time) && !"".equals(end_time)){
-			sql = "SELECT COUNT(*) itemscount FROM run_data WHERE CONVERT(varchar(10),testingtime,120) >= CONVERT(varchar(10),'"+start_time+"',120) "+
-		"AND CONVERT(varchar(10),testingtime,120) <= CONVERT(varchar(10),'"+end_time+"',120) AND sewageID = "+sewageid+"";
-		}*/
 		if(!"".equals(short_title) && "".equals(time)  ){
 			sql = "SELECT COUNT(*) itemscount FROM detection_data WHERE sewageID = "+sewageid+"";
 		} else if(!"".equals(short_title) && !"".equals(time) ){

@@ -12,12 +12,12 @@ import java.sql.Statement;
  */
 public class DBHelp {
 //	private static final String url="jdbc:sqlserver://172.18.139.146:1433;databaseName=CS";
-	private static final String url="jdbc:sqlserver://localhost:1433;databaseName=CS";
+	private static final String url="jdbc:sqlserver://localhost:1433;databaseName=CS_HS";
 	private static final String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	private static final String userName="sa";
-	//private static final String userPassWord="WOmima123";
+	private static final String userPassWord="WOmima123";
     //private static final String userPassWord="@@jiangnan##**&&123";
-	private static final String userPassWord="123";
+	//private static final String userPassWord="123";
 	/*172.18.139.146
 	 * private static final String url="jdbc:mysql://localhost:3306/test";
 	private static final String driver="com.mysql.jdbc.Driver";

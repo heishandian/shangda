@@ -33,11 +33,13 @@ public class PadingUtilServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		String start_time = null;
+		String end_time = null;
 		String station = req.getParameter("short_title");//注意以前是stationName 现在改成了short_title
 		String pagingnum = req.getParameter("pagingnum");
 		String items = req.getParameter("items");
-		String start_time = req.getParameter("start_time");
-		String end_time = req.getParameter("end_time");
+		start_time = req.getParameter("start_time");
+		end_time = req.getParameter("end_time");
 		Integer pagingnum1 = Integer.parseInt(pagingnum);
 		Integer items1 = Integer.parseInt(items);
 		if (!"utf-8".equalsIgnoreCase(req.getCharacterEncoding())) {
@@ -68,7 +70,7 @@ public class PadingUtilServlet extends HttpServlet {
 			pagingnum = 1;
 		}
 		ArrayList<Detection> list = new ArrayList<Detection>();//cast(detection1 as decimal(18,2))
-		if(!"".equals(short_title) && "".equals(start_time) && "".equals(end_time) ){
+		if(!"".equals(short_title) && ("".equals(start_time) || start_time == null) && ("".equals(end_time) || end_time == null )){
 			sql = "SELECT CONVERT(varchar(19),testingtime,120) as time,detection1,detection2,detection3,detection4,detection5 "+
 					"FROM (SELECT ROW_NUMBER() over(order by testingtime desc) as rows,* FROM detection_data "+
 					"WHERE  sewageID = "+sewageid+") as temp "+
@@ -78,38 +80,12 @@ public class PadingUtilServlet extends HttpServlet {
 			sql = "SELECT CONVERT(varchar(19),testingtime,120) as time,detection1,detection2,detection3,detection4,detection5 "+
 			"FROM (SELECT ROW_NUMBER() over(order by testingtime desc) as rows,* FROM detection_data "+
 			"WHERE CONVERT(varchar(10),testingtime,120) >= CONVERT(varchar(10),'"+start_time+"',120) "+
-			"CONVERT(varchar(10),testingtime,120) <= CONVERT(varchar(10),'"+end_time+"',120)AND sewageID = "+sewageid+") as temp "+
+			"AND CONVERT(varchar(10),testingtime,120) <= CONVERT(varchar(10),'"+end_time+"',120) AND sewageID = "+sewageid+") as temp "+
 			"WHERE rows>("+item+"*("+pagingnum+"-1)) and rows<=("+item+"*"+pagingnum+")";
 			
 		}
-		//获取指定站点的所有数据
-		/*if(!"".equals(shorttile) && "".equals(starttime) && "".equals(endtime)){
-			sql = "SELECT TOP  "
-					+ item
-					+ " CONVERT(varchar(19),a.testingtime,120),cast(a.detection1 as decimal(18,2)),cast(a.detection2 as decimal(18,2)),cast(a.detection3 as decimal(18,2)),cast(a.detection4 as decimal(18,2)),cast(a.detection5 as decimal(18,2))  "+
-				    "From detection_data a "
-					+ "where a.detectionID  not in ( SELECT TOP (("
-					+ item
-					+ ")*("
-					+ pagingnum
-					+ "-1)) a.detectionID "
-					+ "FROM detection_data aa  where"
-					+ " aa.sewageID="+sewageid+"   ORDER BY aa.testingtime desc ) and a.sewageID="+sewageid+"  ORDER BY a.testingtime desc";
-		} else if(!"".equals(shorttile) && !"".equals(starttime) && !"".equals(endtime)){
-		 sql = "SELECT TOP  "
-				+ item
-				+ " CONVERT(varchar(19),a.testingtime,120),cast(a.detection1 as decimal(18,2)),cast(a.detection2 as decimal(18,2)),cast(a.detection3 as decimal(18,2)),cast(a.detection4 as decimal(18,2)),cast(a.detection5 as decimal(18,2))  "+
-			    "From detection_data a "
-				+ "where a.detectionID  not in ( SELECT TOP (("
-				+ item
-				+ ")*("
-				+ pagingnum
-				+ "-1)) aa.detectionID "
-				+ "FROM detection_data aa "
-				+ " where aa.sewageID="+sewageid+"  AND CONVERT(varchar(10),aa.testingtime,120) >= '"+starttime+"' and CONVERT(varchar(10),aa.testingtime,120) <= '"+endtime+"' ORDER BY aa.testingtime desc ) and a.sewageID="+sewageid+"  " +
-					" AND CONVERT(varchar(10),a.testingtime,120) >= '"+starttime+"' and CONVERT(varchar(10),a.testingtime,120) <= '"+endtime+"' ORDER BY a.testingtime desc";
-		}*/
-		 Connection connection = DBHelp.getConnection();
+	
+		Connection connection = DBHelp.getConnection();
 		Statement statement = null;
 		ResultSet resultSet = null;
 
@@ -169,11 +145,11 @@ public class PadingUtilServlet extends HttpServlet {
 		else if (!"".equals(stationName) && !"".equals(starttime) && !"".equals(endtime)){//查询指定站点，指定时间段
 		sql = "SELECT COUNT(*) itemscount FROM detection_data a WHERE  CONVERT(varchar(10),a.testingtime,120) >= '"+starttime+"' and CONVERT(varchar(10),a.testingtime,120) <= '"+endtime+"'  AND a.sewageID = "+sewageid+"";
 		}*/
-		if(!"".equals(short_title) && "".equals(start_time) && "".equals(end_time) ){
+		if(!"".equals(short_title) && ("".equals(start_time) || start_time == null) && ("".equals(end_time) || end_time == null )){
 			sql = "SELECT COUNT(*) itemscount FROM detection_data WHERE sewageID = "+sewageid+"";
 		} else if(!"".equals(short_title) && !"".equals(start_time) && !"".equals(end_time)){
-			sql = "SELECT COUNT(*) itemscount FROM detection_data WHERE CONVERT(varchar(10),testingtime,120) >= CONVERT(varchar(10),"+start_time+",120) "+
-					 "AND CONVERT(varchar(10),testingtime,120) <= CONVERT(varchar(10),"+end_time+",120) AND sewageID = "+sewageid+"";	
+			sql = "SELECT COUNT(*) itemscount FROM detection_data WHERE CONVERT(varchar(10),testingtime,120) >= CONVERT(varchar(10),'"+start_time+"',120) "+
+					 "AND CONVERT(varchar(10),testingtime,120) <= CONVERT(varchar(10),'"+end_time+"',120) AND sewageID = "+sewageid+"";	
 		}
 		PadingUtil padingUtil = new PadingUtil();
 		Connection connection = DBHelp.getConnection();
